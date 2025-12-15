@@ -393,6 +393,26 @@ margin-top: 6px;
 
 
 
+/* Hamburger icon animation */
+.menu-toggle {
+  display: none;
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.menu-toggle.active {
+  transform: rotate(90deg);
+}
+
+/* Header shadow on scroll */
+header.scrolled {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+
 
 
 
@@ -404,14 +424,14 @@ margin-top: 6px;
   <header>
     <h1>Vikash Kumar</h1>
 
-    <nav>
+    <nav id="navMenu">
       <a href="#">Home</a>
       <a href="#about">About</a>
       <a href="#Certifications">Certifications</a>
       <a href="#contact">Contact</a>
        
     </nav>
-   
+   <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
   </header>
 
 
@@ -550,7 +570,45 @@ I am always eager to learn new skills and improve myself.
   <footer>
     © 2025 Vikash Kumar. All Rights Reserved.
   </footer>
+  <script>
+  const menu = document.getElementById("navMenu");
+  const toggle = document.getElementById("menuToggle");
+  const header = document.querySelector("header");
+
+  function toggleMenu() {
+    menu.classList.toggle("active");
+    toggle.classList.toggle("active");
+
+    // Icon change ☰ ↔ ✖
+    toggle.innerHTML = menu.classList.contains("active") ? "✖" : "☰";
+  }
+
+  // Link click par menu close
+  document.querySelectorAll("#navMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("active");
+      toggle.classList.remove("active");
+      toggle.innerHTML = "☰";
+    });
+  });
+
+  // Outside click par close
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove("active");
+      toggle.classList.remove("active");
+      toggle.innerHTML = "☰";
+    }
+  });
+
+  // Scroll par header shadow
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  });
+</script>
+
 
 </body>
 </html>
+
 
