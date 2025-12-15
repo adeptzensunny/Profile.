@@ -36,45 +36,51 @@
       overflow-x:hidden;
     }
 
+    header{
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       z-index: 1000;
+       color:#fff;
+      background-color:#0ea5e9;
+      padding:40px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      animation: slideDown 1s ease;
+    }
 
+    header h1{
+      color:#fff;
+      font-weight:600;
+       font-size: clamp(22px, 4vw, 48px);
+    }
 
-    @media (max-width: 768px) {
-  header {
-    padding: 25px 8%;
-  }
+    header nav a{
+      margin-left:25px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:500;
+      position:relative;
+    }
 
-  header nav {
-    position: absolute;
-    top: 90px;
-    right: 8%;
-    background: #0ea5e9;
-    flex-direction: column;
-    width: 200px;
-    padding: 15px;
-    border-radius: 12px;
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
-    transition: all 0.35s ease;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  }
+    header nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0;
+      height:2px;
+      background:#0ea5e9;
+      transition:0.3s;
+    }
 
-  header nav a {
-    margin: 12px 0;
-  }
+    header nav a:hover::after{
+      width:100%;
+      transition: width 0.3s ease;
 
-  header nav.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-
+    }
 
     .hero{
       min-height:85vh;
@@ -604,6 +610,5 @@ I am always eager to learn new skills and improve myself.
 
 </body>
 </html>
-
 
 
